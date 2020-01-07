@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoffeeMugTask.Models.Product;
 using Microsoft.EntityFrameworkCore;
+using CoffeeMugTask.Models.Product.Repository.Interface;
+using CoffeeMugTask.Models.Product.Repository;
 
 namespace CoffeeMugTask
 {
@@ -30,6 +32,7 @@ namespace CoffeeMugTask
         {
             services.AddDbContext<ProductContext>
                 (opt => opt.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddScoped<I_ProductRepository, ProductRepository>();
             services.AddMvc();
         }
 
